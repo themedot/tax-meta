@@ -67,3 +67,12 @@ function save_category_meta($term_id)
     }
 }
 add_action( 'create_category', 'save_category_meta');
+
+function edit_category_meta($term_id)
+{
+    if(wp_verify_nonce( $_POST['_wpnonce'], "update-tag_{$term_id}")){
+        $extra_info = sanitize_text_field($_POST['extra-info']);
+        update_term_meta( $term_id, 'taxm_extra_info', $extra_info);
+    }
+}
+add_action( 'edit_category', 'edit_category_meta');
