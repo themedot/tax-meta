@@ -42,11 +42,12 @@ function taxm_category_form_fields()
 }
 add_action( 'category_add_form_fields', 'taxm_category_form_fields');
 add_action( 'post_tag_add_form_fields', 'taxm_category_form_fields');
+add_action( 'genre_add_form_fields', 'taxm_category_form_fields');
 
 
 function taxm_category_edit_form_fields($term)
 {
-    $extra_info = get_term_meta( $term->term_id, 'taxm_extra_info', true )
+    $extra_info = get_term_meta( $term->term_id, 'taxm_extra_info', true );
 ?>
     <tr class="form-field form-required term-name-wrap">
         <th scope="row"><label for="name"><?php _e('Extra info','tax-meta'); ?></label></th>
@@ -59,6 +60,7 @@ function taxm_category_edit_form_fields($term)
 }
 add_action( 'category_edit_form_fields', 'taxm_category_edit_form_fields');
 add_action( 'post_tag_edit_form_fields', 'taxm_category_edit_form_fields');
+add_action( 'genre_edit_form_fields', 'taxm_category_edit_form_fields');
 
 
 function save_category_meta($term_id)
@@ -70,6 +72,7 @@ function save_category_meta($term_id)
 }
 add_action( 'create_category', 'save_category_meta');
 add_action( 'create_post_tag', 'save_category_meta');
+add_action( 'create_genre', 'save_category_meta');
 
 function edit_category_meta($term_id)
 {
@@ -80,3 +83,4 @@ function edit_category_meta($term_id)
 }
 add_action( 'edit_category', 'edit_category_meta');
 add_action( 'edit_post_tag', 'edit_category_meta');
+add_action( 'edit_genre', 'edit_category_meta');
